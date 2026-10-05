@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-04",
+  "sample_count": 7,
+  "scope": "已发表的同刊样本；组织方式为阅读归纳。",
+  "papers": [
+    {
+      "key": "E01",
+      "title": "Beyond Byte-Level Modeling: Structure-Aware and Adaptive Traffic Classification for Encrypted Networks",
+      "doi": "10.3390/electronics15091828",
+      "publisher_url": "https://doi.org/10.3390/electronics15091828",
+      "local_fulltext": "../../reference_materials/pdf_text/W7157222070__beyond-byte-level-modeling-structure-aware-and-adaptive-traffic-classification-for-encrypted-networks.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "加密下的可观察信息与表示问题 → 协议结构 → 结构 token、层级 shuffle、门控融合 → 验证与贡献",
+      "contribution_organization": "四项：结构感知表示、层级关系预训练、多层表示融合、加密与迁移条件下的结果。",
+      "application_to_this_introduction": "把核心信息及其作用讲清，再引入两层机制；本文聚焦操作语义、报文依赖与角色。"
+    },
+    {
+      "key": "E02",
+      "title": "GCN-MHA Method for Encrypted Malicious Traffic Detection and Classification",
+      "doi": "10.3390/electronics14234627",
+      "publisher_url": "https://doi.org/10.3390/electronics14234627",
+      "local_fulltext": "../../reference_materials/pdf_text/W4416665868__gcn-mha-method-for-encrypted-malicious-traffic-detection-and-classification.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "加密检测需求 → ML/DL 与图方法 → 拓扑关系与加权需求 → GCN-MHA → 三项贡献",
+      "contribution_organization": "图结构与时空特征、GCN 与多头注意力、验证结果。",
+      "application_to_this_introduction": "从关系信息的用途过渡到机制，每项贡献同时交代方法和支持的能力。"
+    },
+    {
+      "key": "E03",
+      "title": "MeeDet: Efficient Malicious Traffic Detection Method via Mamba-Based Early-Exit Mechanism in IIoT Scenarios",
+      "doi": "10.3390/electronics15051017",
+      "publisher_url": "https://doi.org/10.3390/electronics15051017",
+      "local_fulltext": "../../reference_materials/pdf_text/W7133129863__meedet-efficient-malicious-traffic-detection-method-via-mamba-based-early-exit-mechanism-in-iiot-scenarios.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "IIoT 交互与运行条件 → 检测、效率和理解需求 → 代表方法 → Mamba、早退出、LLM 解释 → 三项贡献",
+      "contribution_organization": "检测质量、早退出带来的效率、LLM 辅助理解分别对应具体机制。",
+      "application_to_this_introduction": "将检测、速度和证据定位连到同一设计；本文使用 Jev 的类型化判别接口。"
+    },
+    {
+      "key": "E04",
+      "title": "Few-Shot Learning for Malicious Traffic Detection with Sample Relevance Guided Attention",
+      "doi": "10.3390/electronics14234717",
+      "publisher_url": "https://doi.org/10.3390/electronics14234717",
+      "local_fulltext": "../../reference_materials/pdf_text/W4416958570__few-shot-learning-for-malicious-traffic-detection-with-sample-relevance-guided-attention.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "恶意流量检测 → 标签稀缺 → few-shot 研究 → 样本关联 → GADF-SRGA → 四项贡献",
+      "contribution_organization": "整体框架、GADF 编码、少样本学习、样本关联注意力；每项解释作用。",
+      "application_to_this_introduction": "借鉴具体信息缺口到机制的递进；不同协议统一表达与依赖信息是本文对应问题。"
+    },
+    {
+      "key": "E05",
+      "title": "Unsupervised Anomaly Detection and Explanation in Network Traffic with Transformers",
+      "doi": "10.3390/electronics13224570",
+      "publisher_url": "https://doi.org/10.3390/electronics13224570",
+      "local_fulltext": "../../reference_materials/pdf_text/W4404567899__unsupervised-anomaly-detection-and-explanation-in-network-traffic-with-transformers.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "1.1 检测与透明度动机 → 1.2 相关研究 → 1.3 检测和解释机制、贡献与章节安排",
+      "contribution_organization": "自编码器、无监督检测、顺序注意力扰动、与专家真值比较；解释有独立验证。",
+      "application_to_this_introduction": "在开头确立关键流证据用途，后续归因评价与检测质量相对应。"
+    },
+    {
+      "key": "E06",
+      "title": "Edge Exemplars Enhanced Incremental Learning Model for Tor-Obfuscated Traffic Identification",
+      "doi": "10.3390/electronics14081589",
+      "publisher_url": "https://doi.org/10.3390/electronics14081589",
+      "local_fulltext": "../../reference_materials/pdf_text/W4409432169__edge-exemplars-enhanced-incremental-learning-model-for-tor-obfuscated-traffic-identification.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "Tor 流量识别 → 混淆方式演化 → 持续学习需求 → 增量框架与边缘样本 → 三项贡献",
+      "contribution_organization": "增量框架、边缘样本增强、时间演进实验对应变化需求。",
+      "application_to_this_introduction": "用时间推进的运行变化引出评价；保留其 Tor 流量识别任务身份。"
+    },
+    {
+      "key": "E07",
+      "title": "Fine-Grained Encrypted Traffic Classification Using Dual Embedding and Graph Neural Networks",
+      "doi": "10.3390/electronics14040778",
+      "publisher_url": "https://doi.org/10.3390/electronics14040778",
+      "local_fulltext": "../../reference_materials/pdf_text/W4407627398__fine-grained-encrypted-traffic-classification-using-dual-embedding-and-graph-neural-networks.txt",
+      "introduction_start_pdf_page": 1,
+      "read_scope": "Introduction and contribution list",
+      "introduction_structure": "加密可见性 → 细粒度分类 → 表示需求 → 时间与空间双重嵌入、GNN → 三项贡献",
+      "contribution_organization": "双重嵌入、图模型与融合、实验；两种表示各自承担信息职责。",
+      "application_to_this_introduction": "明确第一层归一化和第二层语义关系分别提供什么信息。"
+    }
+  ],
+  "selected_narrative": "统一报文语义、依赖和端点角色 → 判别上下文 → Jev 类型化检测与关键流证据 → 质量和运行代价评价",
+  "draft_contribution_count": 2
+}

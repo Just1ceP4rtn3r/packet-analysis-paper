@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-04",
+  "user_document": {
+    "url": "https://mcniyfj5bw9b.feishu.cn/wiki/UmzGwARgmiUavpkhjclc847rnSh#XAfldQZfWoOpGQxJB9fcoAYcnee",
+    "document_id": "TXWvdWyuZoaie0xAlVfc1sasnJO",
+    "revision_id": 112
+  },
+  "local_inputs": [
+    "../reference_index.md",
+    "../intro_organization_zh.md",
+    "../references_selected.bib",
+    "../reference_materials/pdf_text/"
+  ],
+  "paragraph_map": [
+    {
+      "paragraph": 1,
+      "role": "NIDS 中的关联行为与流证据需求",
+      "citations": [
+        "R01",
+        "E05"
+      ]
+    },
+    {
+      "paragraph": 2,
+      "role": "统计、字节与结构表示的跨协议操作语义挑战",
+      "citations": [
+        "R06",
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "paragraph": 3,
+      "role": "LLM 上下文中的显式操作依赖证据与输入预算",
+      "citations": [
+        "R05",
+        "R09",
+        "R07"
+      ]
+    },
+    {
+      "paragraph": 4,
+      "role": "生成式判别的处理环节、Jev-IDS 单流前例与关联通信的状态构造问题",
+      "citations": [
+        "R09",
+        "E03",
+        "R02"
+      ]
+    },
+    {
+      "paragraph": 5,
+      "role": "两层归一化与统一操作语义、依赖及角色表示",
+      "source": "feishu_contribution.json; ../intro_organization_zh.md"
+    },
+    {
+      "paragraph": 6,
+      "role": "语义状态的类型化判别与源流证据回溯",
+      "citations": [
+        "R11"
+      ],
+      "source": "feishu_contribution.json"
+    },
+    {
+      "paragraph": 7,
+      "role": "作者补充的 CIC-IDS2017/2018 评价与定性结果",
+      "source": "author-edited introduction.tex; preserved szx markup"
+    },
+    {
+      "paragraph": 8,
+      "role": "语义依赖表示及其检测、归因与效率评价两项贡献"
+    }
+  ],
+  "draft_status": {
+    "author_experimental_results": "Author supplied dataset names and qualitative result paragraph; numerical records pending.",
+    "performance_result_sentences": "Author qualitative paragraph preserved in szx; quantitative insertion instructions retained in comments.",
+    "contribution_2": "Evaluation of semantic context for detection, attribution, and efficiency.",
+    "decision_unit": "traffic instance; implementation-specific unit pending",
+    "method_name": "descriptive working title; no invented acronym",
+    "attribution": "source-flow evidence described; no unspecified scoring algorithm asserted",
+    "online_adaptation": "temporal evaluation described; no unspecified update mechanism asserted",
+    "authors_and_abstract": "empty metadata fields"
+  },
+  "bibliography_keys": [
+    "R01",
+    "E05",
+    "R06",
+    "E01",
+    "E02",
+    "R05",
+    "R09",
+    "R07",
+    "E03",
+    "R11",
+    "R03",
+    "R04",
+    "R02"
+  ],
+  "snapshots": {
+    "feishu_contribution.json": {
+      "sha256": "6e75971a26d67314e7033b62230dad4546f506c0d15e16ce809e93a8a3ee912b",
+      "revision_id": 112
+    },
+    "feishu_evaluation.json": {
+      "sha256": "16da7af236e4ceea902671092297dc464d8a42e3d8343b289c00564373a55e87",
+      "revision_id": 112
+    },
+    "feishu_methodology.json": {
+      "sha256": "43782811b48ff2bc4588eca926ab43a2a8bc2aea5d00e1570b650bd7476dc44f",
+      "revision_id": 112
+    }
+  },
+  "last_revision_date": "2026-10-05",
+  "current_translation_revision": 121,
+  "additional_sources": [
+    {
+      "key": "R02",
+      "url": "https://arxiv.org/abs/2610.01079",
+      "version": "1",
+      "submitted": "2026-10-01",
+      "provided_by": "user",
+      "reading_record": "jev_ids_intro_study.json"
+    }
+  ]
+}

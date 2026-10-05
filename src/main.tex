@@ -1,0 +1,48 @@
+% MDPI ACS template, downloaded from the official publisher on 2026-10-04.
+% Original template and provenance: research/mdpi_template_original.tex and
+% research/template_manifest.json. Definitions/ is copied without modification.
+% Compatibility with the installed TeX Live 2022 kernel: document metadata
+% is unavailable there, so upstream verse's metadata test takes its false branch.
+\providecommand{\IfDocumentMetadataTF}[2]{#2}
+\documentclass[electronics,article,submit,moreauthors,pdftex]{Definitions/mdpi}
+\setlength{\headheight}{24pt}
+
+\usepackage{xcolor}
+
+
+
+\newcommand{\szx}[1]{\textcolor{blue}{#1}}
+
+
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{ }
+\daterevised{ }
+\dateaccepted{ }
+\datepublished{ }
+
+% Working title. Enter author and affiliation metadata when preparing the
+% complete manuscript; this project currently contains the Introduction.
+\Title{Malicious Traffic Detection through Unified Protocol Semantics and Packet Dependencies}
+\Author{}
+\AuthorNames{}
+\address{}
+\corres{}
+\abstract{}
+\keyword{malicious traffic detection; protocol semantics; packet dependencies; cross-flow analysis; key-flow attribution; structured decisions}
+
+\begin{document}
+
+\input{sections/introduction}
+
+\reftitle{References}
+\bibliography{references}
+
+\end{document}

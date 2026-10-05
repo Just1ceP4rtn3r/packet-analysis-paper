@@ -1,0 +1,319 @@
+{
+  "source": "src/sections/introduction.tex",
+  "sentences": [
+    {
+      "part": "body",
+      "paragraph": 1,
+      "sentence": 1,
+      "en": "In network intrusion detection, malicious behavior can emerge from the relationships among communications.",
+      "zh": "在网络入侵检测中，恶意行为可能从通信之间的关系中显现出来。"
+    },
+    {
+      "part": "body",
+      "paragraph": 1,
+      "sentence": 2,
+      "en": "A flow that carries little evidence in isolation can become informative when considered alongside related exchanges and the roles of the participating hosts.",
+      "zh": "一条在孤立考察时包含很少证据的流，在结合相关交互与参与主机的角色进行考察时，可能提供有用信息。"
+    },
+    {
+      "part": "body",
+      "paragraph": 1,
+      "sentence": 3,
+      "en": "Trace-level analysis has demonstrated how temporal and co-occurrence context supports attack detection and the identification of key flows within an attack sequence[1].",
+      "zh": "轨迹级分析已经展示了时间上下文与共现上下文如何支持攻击检测，以及如何识别攻击序列中的关键流[1]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 1,
+      "sentence": 4,
+      "en": "These flows give security analysts a concrete starting point for investigating an alert, while explanations at the packet and sequence levels connect a model's decision to the underlying traffic[2].",
+      "zh": "这些流为安全分析人员调查告警提供了具体的切入点，而报文级和序列级的解释则将模型决策与底层流量联系起来[2]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 1,
+      "sentence": 5,
+      "en": "Effective analysis of such behavior therefore calls for a representation that captures the meaning of communications, preserves their dependencies, and connects detection outcomes to identifiable flow evidence.",
+      "zh": "因此，对此类行为的有效分析需要一种表示，能够捕获通信的含义、保留通信之间的依赖，并将检测结果与可识别的流证据联系起来。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 1,
+      "en": "Machine learning and deep learning extract discriminative information from traffic statistics, packet bytes, and structural relationships.",
+      "zh": "机器学习和深度学习从流量统计、报文字节和结构关系中提取判别信息。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 2,
+      "en": "Statistical features summarize flow behavior, and pretrained byte-sequence models such as NetMamba learn representations from packet headers and payloads[3].",
+      "zh": "统计特征概括流的行为，NetMamba 等预训练字节序列模型则从报文头和载荷中学习表示[3]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 3,
+      "en": "Recent work in Electronics extends this representation space: structure-aware modeling preserves protocol-field boundaries and dependencies across fields, layers, and packets[4], while GCN-MHA uses graph convolution and multi-head attention to model relationships in encrypted traffic[5].",
+      "zh": "《Electronics》近期研究拓展了这一表示空间：结构感知建模保留了协议字段边界，以及字段、协议层和报文之间的依赖[4]；GCN-MHA 则利用图卷积和多头注意力对加密流量中的关系进行建模[5]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 4,
+      "en": "These methods capture traffic content and structural correlations, while the operational meaning of an interaction remains implicit in protocol-specific features and learned embeddings.",
+      "zh": "这些方法捕获流量内容和结构相关性，而交互的操作含义仍隐含在协议特定的特征和学习得到的嵌入表示中。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 5,
+      "en": "Heterogeneous protocols can express related operations through different fields and interaction patterns, making their behavioral meaning difficult to align across communications.",
+      "zh": "异构协议可能通过不同的字段和交互模式表达相关操作，使这些操作的行为含义难以在不同通信之间对齐。"
+    },
+    {
+      "part": "body",
+      "paragraph": 2,
+      "sentence": 6,
+      "en": "Behavior-oriented detection therefore requires an explicit account of the operations carried by the traffic, the packet dependencies that connect them, and the roles of the participating endpoints.",
+      "zh": "因此，面向行为的检测需要显式描述流量承载的操作、连接这些操作的报文依赖，以及参与端点的角色。"
+    },
+    {
+      "part": "body",
+      "paragraph": 3,
+      "sentence": 1,
+      "en": "Large language models (LLMs) offer a complementary route by placing traffic observations, field descriptions, task definitions, and labeled examples in a shared decision context[6,7].",
+      "zh": "大语言模型（LLM）通过将流量观测、字段描述、任务定义和标注示例置于共同决策上下文中，提供了一条互补的研究路径[6,7]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 3,
+      "sentence": 2,
+      "en": "Huang et al. extend this route with cross-flow contexts and relation-aware attention based on endpoints, ports, protocols, and statistical similarity[8].",
+      "zh": "Huang 等人通过跨流上下文，以及基于端点、端口、协议和统计相似性的关系感知注意力，拓展了这一路径[8]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 3,
+      "sentence": 3,
+      "en": "Endpoint and similarity links identify shared participants or correlations; interpreting their security significance still requires the operations carried by the packets and the dependency structure of those operations.",
+      "zh": "端点关联和相似性关联能够识别共同参与方或相关性；解释这些关联的安全意义，仍需要报文承载的操作及这些操作的依赖结构。"
+    },
+    {
+      "part": "body",
+      "paragraph": 3,
+      "sentence": 4,
+      "en": "Context construction thus faces the challenge of supplying explicit behavioral evidence within an input budget.",
+      "zh": "因此，上下文构建面临的挑战是，在输入预算内提供显式的行为证据。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 1,
+      "en": "Alongside context construction, inference must convert this evidence into a usable decision at an acceptable processing cost.",
+      "zh": "在构建上下文的同时，推理还必须以可接受的处理成本，将这些证据转换为可用的决策。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 2,
+      "en": "Longer descriptions increase the amount of information the model must process, and generative detection pipelines add response generation and label extraction to the decision path.",
+      "zh": "更长的描述增加了模型需要处理的信息量，而生成式检测流程还将响应生成和标签提取加入了判别路径。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 3,
+      "en": "For example, the in-context detector of Zhang et al. extracts intrusion decisions by parsing textual yes/no responses[7].",
+      "zh": "例如，Zhang 等人的上下文学习检测器通过解析文本形式的 yes/no 响应来提取入侵判别结果[7]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 4,
+      "en": "MeeDet addresses runtime demands by coupling an efficient traffic detector with LLM-assisted analysis of flagged traffic[9].",
+      "zh": "MeeDet 通过将高效的流量检测器与 LLM 辅助的被标记流量分析相结合，应对运行时间方面的要求[9]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 5,
+      "en": "More recently, Jev-IDS has applied Jev's typed decision interface to one serialized flow per request, evaluating detection quality, latency, and cost under label scarcity[10].",
+      "zh": "更近期的 Jev-IDS 将 Jev 的类型化决策接口应用于每次请求中的一条序列化流，并在标签稀缺条件下评价检测质量、延迟和成本[10]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 4,
+      "sentence": 6,
+      "en": "For behavior spanning related communications, the corresponding representation challenge is to construct decision states that describe protocol operations, packet dependencies, and endpoint roles together with source-flow evidence.",
+      "zh": "对于跨越相关通信的行为，相应的表示挑战是构建决策状态，将协议操作、报文依赖和端点角色与源流证据一同描述。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 1,
+      "en": "We address these challenges by organizing decision context around unified communication semantics and packet dependencies.",
+      "zh": "我们通过围绕统一通信语义与报文依赖组织决策上下文，来应对上述挑战。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 2,
+      "en": "Our framework constructs this context in two layers.",
+      "zh": "我们的框架分两层构建这一上下文。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 3,
+      "en": "The first parses heterogeneous protocols and normalizes the extracted packet information into a common representation.",
+      "zh": "第一层解析异构协议，并将提取的报文信息归一化为一种共同表示。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 4,
+      "en": "The second maps communication operations into a unified semantic model, establishes packet dependencies, and represents endpoint roles in a relationship graph.",
+      "zh": "第二层将通信操作映射到统一语义模型中、建立报文依赖，并在关系图中表示端点角色。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 5,
+      "en": "This organization separates the protocol-specific encoding of an observation from the operation it expresses, allowing related communications to be described on a common semantic basis.",
+      "zh": "这种组织方式将观测的协议特定编码与其表达的操作分离，使相关通信能够在共同的语义基础上得到描述。"
+    },
+    {
+      "part": "body",
+      "paragraph": 5,
+      "sentence": 6,
+      "en": "The resulting context presents the operations together with the dependencies and roles that give them behavioral significance, while maintaining links to the original packets and flows.",
+      "zh": "由此得到的上下文同时呈现操作，以及赋予这些操作行为意义的依赖和角色，并保留与原始报文和流之间的联系。"
+    },
+    {
+      "part": "body",
+      "paragraph": 6,
+      "sentence": 1,
+      "en": "To obtain a structured judgment from this semantic context, we use Jev, a decision model that evaluates typed questions against an input state and directly returns structured results[11].",
+      "zh": "为了从该语义上下文中获得结构化判别结果，我们使用 Jev；Jev 是一种决策模型，能够针对输入状态评估类型化问题，并直接返回结构化结果[11]。"
+    },
+    {
+      "part": "body",
+      "paragraph": 6,
+      "sentence": 2,
+      "en": "The semantic representation supplies the input state, and a typed benign-or-malicious question specifies the required decision.",
+      "zh": "语义表示提供输入状态，类型化的良性或恶意判别问题则指定所需决策。"
+    },
+    {
+      "part": "body",
+      "paragraph": 6,
+      "sentence": 3,
+      "en": "This interface removes response generation and textual label extraction from the decision stage, allowing its processing cost to be evaluated together with context construction.",
+      "zh": "该接口从决策阶段中移除了响应生成和文本标签提取，使其处理成本能够与上下文构建成本一同得到评价。"
+    },
+    {
+      "part": "body",
+      "paragraph": 6,
+      "sentence": 4,
+      "en": "The retained links to source traffic provide the basis for key-flow attribution.",
+      "zh": "保留下来的源流量关联为关键流归因提供依据。"
+    },
+    {
+      "part": "body",
+      "paragraph": 6,
+      "sentence": 5,
+      "en": "Detection and evidence localization thus share the same account of the observed behavior: the detector uses related operations to make a decision, and attribution identifies the flows that substantiate it.",
+      "zh": "因此，检测与证据定位共享对观测行为的同一描述：检测器利用相关操作作出决策，归因则识别支撑该决策的流。"
+    },
+    {
+      "part": "body",
+      "paragraph": 7,
+      "sentence": 1,
+      "en": "We apply this framework to the detection of malicious traffic in the CIC-IDS2017 and CIC-IDS2018 datasets.",
+      "zh": "我们将该框架应用于 CIC-IDS2017 和 CIC-IDS2018 数据集中的恶意流量检测。"
+    },
+    {
+      "part": "body",
+      "paragraph": 7,
+      "sentence": 2,
+      "en": "We evaluate the quality of binary detection, key-flow attribution, and runtime performance under different input budgets, concurrency levels, and temporal settings.",
+      "zh": "我们在不同的输入预算、并发水平和时间设置下，评价二分类检测、关键流归因的质量以及运行性能。"
+    },
+    {
+      "part": "body",
+      "paragraph": 7,
+      "sentence": 3,
+      "en": "The results show that our semantic-context representation improves both detection quality and evidence localization compared with baseline methods, while maintaining competitive processing efficiency.",
+      "zh": "结果表明，与基线方法相比，我们的语义上下文表示提高了检测质量和证据定位质量，同时保持了具有竞争力的处理效率。"
+    },
+    {
+      "part": "contribution_lead",
+      "paragraph": 1,
+      "sentence": 1,
+      "en": "The main contributions of this work are as follows:",
+      "zh": "本文的主要贡献如下："
+    },
+    {
+      "part": "contribution",
+      "paragraph": 1,
+      "sentence": 1,
+      "en": "A unified semantic and dependency representation for malicious traffic.",
+      "zh": "面向恶意流量的统一语义与依赖表示。"
+    },
+    {
+      "part": "contribution",
+      "paragraph": 1,
+      "sentence": 2,
+      "en": "We introduce a two-layer context construction method that combines normalized protocol observations with communication semantics, packet dependencies, and endpoint-role relationships.",
+      "zh": "我们提出一种两层上下文构建方法，将归一化协议观测与通信语义、报文依赖及端点角色关系相结合。"
+    },
+    {
+      "part": "contribution",
+      "paragraph": 1,
+      "sentence": 3,
+      "en": "It supplies explicit behavioral context for malicious-traffic detection and maintains links to the source flows for evidence localization.",
+      "zh": "该方法为恶意流量检测提供显式的行为上下文，并保留与源流之间的联系，以支持证据定位。"
+    },
+    {
+      "part": "contribution",
+      "paragraph": 2,
+      "sentence": 1,
+      "en": "An evaluation of semantic context for detection, attribution, and efficiency.",
+      "zh": "面向检测、归因与效率的语义上下文评价。"
+    },
+    {
+      "part": "contribution",
+      "paragraph": 2,
+      "sentence": 2,
+      "en": "We organize binary detection, key-flow attribution, and runtime comparisons within a common framework, using trained classifiers and generative LLMs as reference methods.",
+      "zh": "我们在统一框架内组织二分类检测、关键流归因与运行时间比较，并以经过训练的分类器和生成式 LLM 作为参照方法。"
+    },
+    {
+      "part": "contribution",
+      "paragraph": 2,
+      "sentence": 3,
+      "en": "Component ablations, relation perturbations, and temporal evaluation connect the semantic design to detection quality, evidence quality, processing cost, and adaptation under changing traffic.",
+      "zh": "组件消融、关系扰动与时间演进评价，将语义设计与检测质量、证据质量、处理成本，以及流量变化条件下的适应能力联系起来。"
+    },
+    {
+      "part": "roadmap",
+      "paragraph": 1,
+      "sentence": 1,
+      "en": "The remainder of this paper reviews related work, defines the detection and attribution tasks, details the semantic-context framework, and presents the evaluation and conclusions.",
+      "zh": "本文其余部分回顾相关工作，定义检测与归因任务，详细介绍语义上下文框架，并呈现评价与结论。"
+    }
+  ],
+  "citation_numbers": {
+    "R01": "1",
+    "E05": "2",
+    "R06": "3",
+    "E01": "4",
+    "E02": "5",
+    "R05": "6",
+    "R09": "7",
+    "R07": "8",
+    "E03": "9",
+    "R02": "10",
+    "R11": "11"
+  }
+}

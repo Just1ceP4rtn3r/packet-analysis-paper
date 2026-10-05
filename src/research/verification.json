@@ -1,0 +1,17 @@
+{
+  "compile_command": "make -C src",
+  "engine": "pdfTeX / TeX Live 2022",
+  "pdf": "build/main.pdf",
+  "pages": 3,
+  "latex_warnings": [],
+  "bibtex_warning_count": 0,
+  "official_template_files_unchanged": true,
+  "unresolved_citations": false,
+  "main_language": "English",
+  "manuscript_word_count_approximate": 882,
+  "cited_references": 11,
+  "read_electronics_introductions": 7,
+  "result_status": "Author qualitative results and blue markup preserved; quantitative records pending.",
+  "translation_aligned_sentences": 43,
+  "feishu_revision": 121
+}

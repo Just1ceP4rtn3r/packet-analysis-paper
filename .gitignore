@@ -1,0 +1,20 @@
+# LaTeX build files
+src/build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*-eps-converted-to.pdf
+
+# Downloaded reference papers
+reference_materials/
+
+# Local authentication and cloud-document snapshots
+.feishu*
+src/research/feishu_*
+.env
+.env.*

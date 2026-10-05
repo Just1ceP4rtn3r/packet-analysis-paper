@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-05",
+  "key": "R02",
+  "title": "Jev-IDS: System One Models for Network Intrusion Detection",
+  "authors": [
+    "Paulo Severo",
+    "Silvio E. Quincozes",
+    "Amanda Dias"
+  ],
+  "url": "https://arxiv.org/abs/2610.01079",
+  "pdf_url": "https://arxiv.org/pdf/2610.01079",
+  "version": "1",
+  "submitted": "2026-10-01",
+  "read_scope": [
+    "Introduction",
+    "Background",
+    "Related work",
+    "Architecture",
+    "Experimental methodology",
+    "Results"
+  ],
+  "introduction_structure": [
+    "NIDS 的检测与运行需求",
+    "监督检测的数据要求与提示式 LLM 的适应方式",
+    "生成式判别的开销及输出控制",
+    "Jev 类型化接口与受控单流评价",
+    "方法、比较设置与贡献"
+  ],
+  "verified_method_facts": [
+    "每次请求包含一条序列化流、任务说明及可选标注示例。",
+    "类型化问题返回攻击判别值和预定义类别。",
+    "评价联合考察检测质量、延迟和成本。"
+  ],
+  "application_to_this_introduction": "将该文作为直接的类型化单流判别前例；围绕跨协议操作语义、报文依赖、端点角色与源流证据建立本文的状态构造问题。",
+  "gap_interpretation": "根据输入结构和任务边界归纳的研究定位；本文用语义组件消融、关系扰动及归因评价检验所构造证据的作用。"
+}

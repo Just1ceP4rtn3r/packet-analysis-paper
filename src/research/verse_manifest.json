@@ -1,0 +1,11 @@
+{
+  "package": "verse",
+  "upstream": "https://ctan.org/pkg/verse",
+  "download_url": "https://mirrors.mit.edu/CTAN/macros/latex/contrib/verse.zip",
+  "archive_sha256": "7ded96e07e80a683ef8bcdd6e410ece9d5249916556143da6be3e4828704aeca",
+  "license": "LPPL 1.3c or later",
+  "generated_file": "verse.sty",
+  "source_files": "research/verse/",
+  "generation_command": "latex -interaction=nonstopmode -halt-on-error verse.ins",
+  "reason": "Required by MDPI class v6.5a; absent from the installed TeX Live distribution."
+}
