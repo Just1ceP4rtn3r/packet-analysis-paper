@@ -57,6 +57,8 @@ Jev 是既有模型，按 state 和类型化问题直接返回判别概率。Jev
 
 任务定义是 **3.1 Problem Formulation**，含 3.1.1 Target Flows and Observable Evidence 和 3.1.2 Decision Paths and Processing Budget。随后为 3.2 System Overview、3.3 Message-Level Operational Semantics、3.4 Cross-Flow Behavioral Semantics、3.5 Dual-Path Candidate Selection、3.6 Typed Decisions and Output Integration、3.7 Implementation and Reproducibility。
 
+Related Work 保持 1 页，采用两个小节：2.1 Traffic Representation and Cross-Flow Semantics（0.55 页），2.2 Semantic Decisions and Computational Allocation（0.45 页）。前者比较字节/协议结构、协议操作语义和跨流表示，明确 trace 与目标流的判定粒度；后者比较生成式结构化输出、Jev 单流类型化判别和计算分配。结尾对应双层语义表示与两条并行路径，不另设 Positioning 小节。区分 MeeDet 的异步告警解释与本文参与最终流判定的语义决策。
+
 Experiments 依次为：4.1 Experimental Setup（2 页）；4.2 End-to-End Detection and Same-Task Comparison；4.3 Semantic Representation Ablations；4.4 Decision-Path Ablations；4.5 Jev Comparison and End-to-End Efficiency；4.6 Budget Sensitivity and Evidence Case Study（后五项各 1 页）。
 
 七篇本地同刊样本的范围为 18–27 页、中位数 20 页；样本支持组织方式选择，不证明期刊固定偏好或接收概率。逐篇章节分析及逐小节预算见 `electronics_structure_plan_zh.md`。

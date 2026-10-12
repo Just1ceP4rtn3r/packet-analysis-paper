@@ -16,7 +16,8 @@ assert "A4" in info, "Expected A4 page size"
 expected = {
     1: ["Abstract", "22-page structural draft"],
     2: ["1. Introduction"],
-    4: ["2. Related Work", "2.1. Traffic Representations"],
+    4: ["2. Related Work", "2.1. Traffic Representation and Cross-Flow Semantics",
+        "2.2. Semantic Decisions and Computational Allocation"],
     5: ["3. Methodology", "3.1. Problem Formulation",
         "3.1.1. Target Flows", "3.1.2. Decision Paths"],
     6: ["3.2. System Overview"],

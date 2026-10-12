@@ -1,24 +1,33 @@
 \PlanPage{4}{Section 2: 1 page, p.~4.}
 \section{Related Work}\label{sec:related-work}
-\subsection{Traffic Representations and Cross-Flow Detection}
-\Budget{0.40 page}
-\DraftText{Organize prior work by the information exposed to the detector:
-packet bytes, protocol structure, and relationships across flows. Compare the
-prediction unit, available evidence, and treatment of temporal relationships.
-Anchor the discussion in NetMamba, structure-aware modeling, Tracegram, and
-relation-aware detection~\cite{R06,E01,R01,R07}. End with the specific evidence
-organization problem addressed here.}
-\subsection{Semantic and Typed Decision Models}
-\Budget{0.35 page}
-\DraftText{Explain protocol-specific semantic interpretation, generative
-structured decisions, and typed probabilities~\cite{R12,R13,R14,R02,R11}.
-Distinguish Jev as an existing decision model from the proposed representation
-and candidate-selection mechanisms. Compare single-flow state with target-flow
-state augmented by related communications.}
-\subsection{Positioning of This Work}
-\Budget{0.25 page}
-\DraftText{Connect the two remaining needs---aligned operational evidence and
-the allocation of semantic computation---to the two contributions. State the
-comparison dimensions that will be tested in Section~\ref{sec:evaluation}.}
-\DraftBlock{3.0cm}{Synthesis paragraph or compact comparison matrix:\\
-prediction unit; message semantics; cross-flow evidence; candidate selection; decision output.}
+\subsection{Traffic Representation and Cross-Flow Semantics}
+\Budget{0.55 page}
+
+Traffic representation learning differs in the information retained for detection.
+NetMamba pretrains a Mamba encoder on packet bytes~\cite{R06}.
+Yu et al. encode protocol-defined fields, layers, packets, and sessions, using hierarchical order recovery to learn structural dependencies~\cite{E01}.
+Protocol-semantic methods further express the meaning of protocol fields.
+Ku et al. translate BACnet services, objects, and values into operational statements for rule- and knowledge-assisted LLM detection~\cite{R12}.
+MISSION extends IPFIX with MQTT attributes, correlates communications into event logs, and detects deviations from mined process models~\cite{R13}.
+These semantic pipelines define operation interpretation and correlation mechanisms for their respective protocols.
+
+Cross-flow modeling expands the evidence available for classification.
+Tracegram treats a trace as a collection of flows and combines flow encoders with temporal aggregation for trace classification and key-flow attribution~\cite{R01}.
+Huang et al. construct cross-flow contexts and inject endpoint, port, protocol, and statistical relations into attention for target-flow classification~\cite{R07}.
+These approaches encode temporal or relational dependencies through learned representations.
+Our representation makes operations, resources, and response outcomes explicit across protocols, then organizes related interactions and their order into bounded behavioral evidence for a target flow.
+
+\subsection{Semantic Decisions and Computational Allocation}
+\Budget{0.45 page}
+
+Semantic detectors differ in how they convert input evidence into decisions.
+From Flows to Words converts flow features into text, adds deterministic behavioral flags, and uses grammar-constrained generation to return a JSON verdict and attack score, with a threshold calibrated on development data~\cite{R14}.
+Jev-IDS serializes one flow per request and obtains an attack probability and a finite-choice traffic category through Jev's typed interface~\cite{R02}.
+Grammar-constrained generation controls the output format, while typed inference directly returns the requested probabilities.
+Building on single-flow typed detection, our framework supplies Jev with operational semantics and related-flow evidence.
+
+Computational allocation also depends on when semantic processing is invoked and what role its output serves.
+MeeDet uses Mamba-based early exits to reduce average detection computation and applies an asynchronous LLM module to explain generated alerts~\cite{E03}.
+Its LLM supports post-alert analysis, while the Mamba backbone determines detection outcomes.
+In our framework, semantic decisions participate in final target-flow classification through two parallel paths: alert verification reassesses fast-detector alerts to improve precision, and cross-flow discovery independently selects candidates from the full stream to improve recall.
+Together, bounded evidence construction and path-specific selection control the context processed and the scope of semantic inference.

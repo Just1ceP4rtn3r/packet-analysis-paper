@@ -108,7 +108,7 @@ Related Work 后设置 Preliminaries，定义流、可观察元数据及建模�
 | --- | --- | ---: | --- |
 | 1 | Title, authors, Abstract, Keywords | 1 页 | 摘要单段；骨架模式附篇幅总览，最终替换为真实首页内容 |
 | 2–3 | 1. Introduction | 2 页 | 完整保留现有英文；预留摘要扩展后的排版调节空间 |
-| 4 | 2. Related Work | 1 页 | 2.1 Traffic Representations and Cross-Flow Detection 0.4；2.2 Semantic and Typed Decision Models 0.35；2.3 Positioning of This Work 0.25；按任务和证据信息比较 |
+| 4 | 2. Related Work | 1 页 | 2.1 Traffic Representation and Cross-Flow Semantics 0.55；2.2 Semantic Decisions and Computational Allocation 0.45；英文初稿按表示、预测单位、判别接口和计算分配比较，末段收束到双层语义与两条并行路径 |
 | 5 | 3.1 Problem Formulation（属于 3. Methodology） | 1 页 | 3.1.1 Target Flows and Observable Evidence 0.5；3.1.2 Decision Paths and Processing Budget 0.5；定义目标流、历史窗、可观察协议信息、候选集合与最终输出 |
 | 6 | 3.2 System Overview | 1 页 | 全流分叉总架构、模块输入输出、最终结果归属目标流；Figure 1 |
 | 7 | 3.3 Message-Level Operational Semantics | 1 页 | 操作、资源、响应结果、端点角色；跨协议映射与源包标识；Table 1 |

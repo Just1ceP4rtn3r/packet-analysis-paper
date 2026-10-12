@@ -1,6 +1,6 @@
 # Electronics Article 骨架
 
-2026-10-12：按用户确认的常规 Article 要求扩展为 **22 页**全文骨架。Introduction 原文保持不变；后续各章显示写作职责、图表占位及页预算。该稿采用官方投稿模板，实际研究内容与作者信息仍需填写。
+2026-10-12：按用户确认的常规 Article 要求扩展为 **22 页**全文骨架。Introduction 和 Related Work 已有英文正文；方法、实验等后续章节显示写作职责、图表占位及页预算。该稿采用官方投稿模板，后续正文与作者信息仍需填写。
 
 ## 全文预算与操作
 
@@ -38,11 +38,14 @@ PDF 使用 TeX Live 的 `latexmk`、`pdflatex`、`bibtex` 编译；核验另需 
 
 ## 文件与编译
 
+Related Work 的英文初稿采用两个小节：Traffic Representation and Cross-Flow Semantics（0.55 页）与 Semantic Decisions and Computational Allocation（0.45 页）。比较依据是表示保留的信息、trace/目标流判定粒度、生成式或类型化判别接口，以及语义模型参与检测或告警解释的方式。末段对应并行的告警复判与跨流补充检测；Jev 作为已有模型使用。
+
 | 文件 | 内容 |
 | --- | --- |
 | `main.tex` | 主入口，使用 `electronics,article,submit` 期刊选项 |
 | `sections/introduction.tex` | 英文 Introduction 与两项贡献 |
-| `sections/related_work.tex` 等新增文件 | 相关工作、任务定义、方法、评价、讨论/结论、声明和附录 |
+| `sections/related_work.tex` | 英文 Related Work，两个小节共 1 页 |
+| 其余 `sections/` 文件 | 任务定义、方法、评价、讨论/结论、声明和附录的骨架 |
 | `planning.tex` | 仅用于结构稿的页预算、占位和分页宏 |
 | `tools/verify_skeleton.py` | PDF 实际页数与章节起始页核验 |
 | `tools/package_skeleton.py` | 可重编译的结构稿源码归档 |
