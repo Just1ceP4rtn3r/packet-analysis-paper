@@ -12,6 +12,7 @@ src/build/
 
 # Downloaded reference papers
 reference_materials/
+research/
 
 # Local authentication and cloud-document snapshots
 .feishu*

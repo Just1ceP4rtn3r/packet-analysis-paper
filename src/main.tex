@@ -8,6 +8,7 @@
 \setlength{\headheight}{24pt}
 
 \usepackage{xcolor}
+\input{planning}
 
 
 
@@ -28,21 +29,42 @@
 \dateaccepted{ }
 \datepublished{ }
 
-% Working title. Enter author and affiliation metadata when preparing the
-% complete manuscript; this project currently contains the Introduction.
+% Working title. Metadata and abstract are explicit structural-draft placeholders.
 \Title{Malicious Traffic Detection through Unified Protocol Semantics and Packet Dependencies}
-\Author{}
-\AuthorNames{}
-\address{}
-\corres{}
-\abstract{}
-\keyword{malicious traffic detection; protocol semantics; packet dependencies; cross-flow analysis; key-flow attribution; structured decisions}
+\Author{[Author names placeholder]}
+\AuthorNames{Author metadata pending}
+\address{[Affiliations and full addresses placeholder]}
+\corres{[Corresponding author and email placeholder]}
+\abstract{[Abstract placeholder; final target: 150--200 words in one paragraph.]
+State the target-flow detection problem and the need to combine operational
+meaning across related communications. Summarize the message-level operational
+semantics and the bounded cross-flow behavioral context. Explain the parallel
+alert-verification and cross-flow-discovery paths and the role of the existing
+Jev typed decision model. Report the final datasets and the strongest measured
+precision, recall, and processing-cost results after they have been verified.
+Conclude with the supported significance of the complete detection framework.
+Dataset names, comparison methods, and numerical results remain xxx in this
+structural draft. The final abstract should contain the actual study summary
+and must agree with the results in the main text.}
+\keyword{network intrusion detection; protocol semantics; cross-flow analysis; alert verification; selective routing; typed decisions}
 
 \begin{document}
 
+\PlanOverview
+\PlanPage{2}{Section 1: 2 pages, pp.~2--3. Existing Introduction retained verbatim.}
 \input{sections/introduction}
+\input{sections/related_work}
+\input{sections/framework}
+\input{sections/evaluation}
+\input{sections/discussion_conclusion}
+\input{sections/back_matter}
+\input{sections/appendix}
 
+\PlanPage{21}{References: 2 pages, pp.~21--22. Real cited entries below; remaining space is reserved.}
+\begin{adjustwidth}{-\extralength}{0cm}
 \reftitle{References}
 \bibliography{references}
+\end{adjustwidth}
+\PlanToPage{23}
 
 \end{document}

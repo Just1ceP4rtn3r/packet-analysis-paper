@@ -1,0 +1,21 @@
+% First subsection of Methodology; included by framework.tex.
+\subsection{Problem Formulation}\label{sec:problem}
+\subsubsection{Target Flows and Observable Evidence}
+\Budget{0.50 page}
+\DraftText{Define a target flow, its binary label, protocol messages, endpoint
+roles, observation cutoff, and the allowed related-flow history. State which
+protocol fields are observable. Specify what evidence is available when a
+decision is issued and how packet/flow identifiers are preserved. Relate the
+task to heterogeneous traffic without assuming visibility into encrypted payloads.}
+\DraftBlock{3.8cm}{Notation and one worked target-flow example:\\
+target flow, source messages, endpoint roles, time window, context budget, output label.}
+\subsubsection{Decision Paths and Processing Budget}
+\Budget{0.50 page}
+\DraftText{Define the complete input stream, the fast detector's alert set, and
+the independently selected discovery candidates. Both selections originate from
+the full stream; the discovery set is not restricted to alerts. Define the
+final prediction unit, candidate overlap, semantic invocation count, and context
+budget. State the detection and processing objectives without assigning
+unmeasured numerical gains.}
+\DraftBlock{3.2cm}{Task specification and processing constraints.\\
+Freeze actual thresholds, observation rules, and evaluation granularity before experiments.}

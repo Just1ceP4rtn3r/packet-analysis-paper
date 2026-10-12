@@ -1,0 +1,118 @@
+\PlanPage{11}{Section 4, Experiments: 7 pages, pp.~11--17. Section 4.1: 2 pages, pp.~11--12.}
+\section{Experiments}\label{sec:evaluation}
+\subsection{Experimental Setup}
+\subsubsection{Datasets, Labels, and Temporal Splits}
+\Budget{0.75 page on p.~11}
+\DraftText{Identify the selected datasets (xxx), captures, protocol coverage,
+attack labels, and target-flow labeling procedure. Provide raw-packet access,
+timestamps, and endpoint information needed by both semantic layers. Specify
+train/validation/test boundaries, host/session separation, and context reset
+rules. Prevent overlapping communication history from leaking across splits.
+State the observation cutoff used during evaluation.}
+\DraftTable{4.0cm}{Datasets and evaluation splits}{Dataset/version / capture dates / flows / attack prevalence / protocols / available fields / split rule.\\
+All dataset choices and counts: xxx.}
+\DraftText{Define the cross-flow attack subset using independent annotations
+or trace evidence. State capture-level or host-time-block units used for
+uncertainty estimates and repeated runs.}
+\subsubsection{Baselines and Comparison Conditions}
+\Budget{0.75 page: 0.25 on p.~11 and 0.50 on p.~12}
+\DraftText{Specify the same-task comparison groups: fast detector, suitable
+trained traffic models, applicable cross-flow methods, Jev-IDS-style single-flow
+decisions, and generative structured-output detectors. Final methods: xxx.
+Define compatible prediction units before comparing them.}
+
+\PlanPage{12}{Section 4.1 continued: baseline conditions 0.50 page; metrics 0.50 page.}
+\DraftText{For complete-method comparisons, describe each method's input,
+training budget, and reproduced implementation. For controlled model
+substitution, match input evidence, detection operating points, and concurrency.
+Use validation data to choose operating points. Identify any flow/trace
+adaptation and record its effect on the task.}
+\DraftTable{3.1cm}{Baseline implementations and controlled comparisons}{Method / prediction unit / available evidence / training or examples / model version / calibration / timed stages.}
+\subsubsection{Metrics and Measurement Protocol}
+\Budget{0.50 page on p.~12}
+\DraftText{Report precision, recall, F1, FPR, and PR-AUC for the complete test
+stream, with per-attack results. Report actual semantic requests per flow,
+input tokens, cost, throughput, and p50/p95 latency. Include parsing, association,
+context construction, API/network time, integration, and retries. Distinguish
+observation waiting time from processing latency and per-call latency. State
+hardware, concurrency, repetitions, and the uncertainty calculation.}
+\DraftBlock{3.8cm}{Metric definitions and measurement boundaries.\\
+Use consistent denominators and include all input flows in system-level results.}
+
+\PlanPage{13}{Section 4.2: 1 page, p.~13. Main whole-system evidence.}
+\subsection{End-to-End Detection and Same-Task Comparison}\label{sec:e2e}
+\Budget{1 page}
+\DraftText{Lead with full-stream target-flow results for the complete
+framework and same-task methods. Quantify precision and recall changes relative
+to the fast detector, then analyze attacks and protocols where related-flow
+evidence explains the change. All measured values remain xxx until verified.}
+\DraftTable{5.0cm}{End-to-end detection on the full test stream}{Dataset / method / precision / recall / F1 / FPR / PR-AUC / interval.\\[6pt]
+Fast-only, selected same-task baselines, single-flow Jev, and the complete framework.\\[6pt]
+Results: xxx.}
+\DraftBlock{4.2cm}{Per-attack results and evidence-based interpretation.\\
+Report the full evaluation population and all selected baselines.}
+
+\PlanPage{14}{Section 4.3: 1 page, p.~14. Evidence for the semantic representation.}
+\subsection{Semantic Representation Ablations}\label{sec:semantic-ablation}
+\Budget{1 page}
+\DraftText{Compare the full representation with removal of message-level
+operation alignment, cross-flow context, deterministic statistics, and template
+folding. Add equal-length random neighbors and perturb endpoint associations
+or event order. Keep the target-flow evidence, Jev model, operating point, and
+context budget controlled, and describe how each replacement is constructed.}
+\DraftTable{3.8cm}{Semantic-module ablations}{Variant / precision / recall / FPR / input tokens / construction time.\\[6pt]
+Full; raw-field input; target-only; no statistics; no folding; perturbed relations.\\
+Results: xxx.}
+\DraftFigure{3.3cm}{Effect of related-flow evidence under a matched context budget}{Real related flows versus random neighbors, endpoint perturbation, and order perturbation.\\
+Cross-flow attack subset and uncertainty intervals: xxx.}
+\DraftText{Explain which information each component contributes, including
+the quality--budget tradeoff where a component compresses evidence.}
+
+\PlanPage{15}{Section 4.4: 1 page, p.~15. Evidence for the two decision paths.}
+\subsection{Decision-Path Ablations}\label{sec:path-ablation}
+\Budget{1 page}
+\DraftText{Evaluate fast-only, fast plus verification, fast plus discovery,
+and the complete two-path framework on the same full test stream. Discovery
+remains independently eligible across all flows. Report candidate counts,
+overlap, actual calls, and the final detection metrics for every variant.}
+\DraftTable{4.8cm}{Path contributions and error transitions}{Variant / precision / recall / corrected FP / lost TP / newly detected TP / added FP / calls.\\[6pt]
+Fast-only; +verification; +discovery; both.\\
+Results: xxx.}
+\DraftBlock{4.3cm}{Interpretation of precision and recall changes.\\
+Separate the effects of candidate selection, semantic reassessment, and final integration.\\
+Include errors introduced as well as errors corrected.}
+
+\PlanPage{16}{Section 4.5: 1 page, p.~16. Model substitution and whole-system cost.}
+\subsection{Jev Comparison and End-to-End Efficiency}\label{sec:efficiency}
+\Budget{1 page}
+\DraftText{Replace Jev with the selected generative structured-output
+decision model using matched evidence, detection operating points, and
+concurrency. Record the model/version, input budget, decoding/output constraints,
+and measurement period. Compare decision quality as well as latency and cost.}
+\DraftFigure{4.0cm}{Detection quality and processing cost}{Quality versus p95 latency or throughput; annotate model, concurrency, and cost.\\[6pt]
+Paired decision-model comparison and complete-pipeline measurements: xxx.}
+\DraftTable{3.5cm}{End-to-end processing breakdown}{Parsing / association / routing / context building / API and network / integration.\\[6pt]
+Throughput; p50/p95; calls per million flows; tokens; retries; cost. Results: xxx.}
+\DraftText{Explain the separate effects of bounded contexts, typed decisions,
+and invocation control. Relate efficiency claims to the measured complete
+pipeline and report the time/cost of the actual API service configuration.}
+
+\PlanPage{17}{Section 4.6: 1 page, p.~17. Budget sensitivity 0.60; traceable case 0.40.}
+\subsection{Budget Sensitivity and Evidence Case Study}
+\subsubsection{Context and Routing Budgets}
+\Budget{0.60 page}
+\DraftText{Vary the supported context window, token budget, and routing
+budget. Show quality and cost jointly, and explain the operating point selected
+on validation data. Separate changes in available evidence from changes in
+decision-model execution.}
+\DraftFigure{3.6cm}{Sensitivity to context and routing budgets}{Budget sweep: recall/FPR versus calls, tokens, throughput, and p95 latency.\\
+Validation-selected operating point and test results: xxx.}
+\subsubsection{Traceable Cross-Flow Evidence}
+\Budget{0.40 page}
+\DraftText{Follow one labeled target flow from messages and related
+communications through the semantic context and decision paths to the final
+output. Show source packet/flow IDs, time order, response changes, and the
+ground-truth label. Use the case to explain the mechanism behind the aggregate
+results.}
+\DraftBlock{3.0cm}{Trace timeline, operational facts, source IDs, and target-flow decision.\\
+Case and measured outputs: xxx.}

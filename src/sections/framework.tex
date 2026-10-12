@@ -1,0 +1,86 @@
+\PlanPage{5}{Section 3, Methodology: 6 pages, pp.~5--10. Section 3.1: 1 page, p.~5.}
+\section{Methodology}\label{sec:framework}
+\input{sections/problem_formulation}
+
+\PlanPage{6}{Section 3.2: 1 page, p.~6; part 2 of the 6-page method allocation.}
+\subsection{System Overview}
+\Budget{1 page}
+\DraftText{Introduce the two semantic layers and two parallel decision paths
+through their inputs and outputs. Walk one target flow from packet observation
+to its final prediction. Associate each module with the challenge it resolves.}
+\DraftFigure{7.0cm}{Overview of the proposed framework}{Figure 1 layout:\\[6pt]
+Full traffic stream $\longrightarrow$ fast scoring $\longrightarrow$ alert verification\\[6pt]
+Full traffic stream $\longrightarrow$ independent routing $\longrightarrow$ cross-flow discovery\\[6pt]
+Shared evidence construction: message-level operational semantics + cross-flow behavioral semantics\\[6pt]
+Jev typed decisions $\longrightarrow$ integration $\longrightarrow$ target-flow predictions.\\[6pt]
+Show packet/flow provenance and candidate overlap handling.}
+\DraftText{Use the architecture to establish the responsibilities of the
+modules in Sections 3.3--3.7. Provide a concise execution description or
+pseudocode for the actual implementation.}
+
+\PlanPage{7}{Section 3.3: 1 page, p.~7; part 3 of the 6-page method allocation.}
+\subsection{Message-Level Operational Semantics}\label{sec:message-semantics}
+\Budget{1 page}
+\DraftText{Define the common operation, resource, response-outcome, and
+endpoint-role slots. Describe how implemented protocol parsers populate them,
+how unavailable fields are represented, and how source packet identifiers are
+retained. Use the same operational intent in multiple supported protocols to
+explain alignment.}
+\DraftTable{5.0cm}{Examples of protocol-to-operation mapping}{Protocol / source field / operation / resource / response outcome / endpoint role / provenance.\\[6pt]
+Populate with implemented mappings and trace-backed examples.}
+\DraftText{Explain the semantic invariants and protocol-specific mapping
+rules. Summarize the mapping schema here; put the extended mappings in
+Appendix~\ref{app:reproducibility}.}
+\DraftBlock{3.2cm}{Mapping rules, missing-value handling, and an end-to-end message example.}
+
+\PlanPage{8}{Section 3.4: 1 page, p.~8; part 4 of the method allocation.}
+\subsection{Cross-Flow Behavioral Semantics}\label{sec:cross-flow}
+\Budget{1 page}
+\DraftText{Start from the target flow. Define endpoint and temporal
+association, event order, and the selected communication history. Explain the
+deterministic counts, rates, and response differences. Describe template folding
+and the preservation of meaningful changes, followed by the exact context
+truncation rule and provenance mapping.}
+\DraftFigure{6.0cm}{Construction of bounded cross-flow evidence}{Related communications in time order $\longrightarrow$ behavioral facts\\[6pt]
+$\longrightarrow$ repeated-message folding $\longrightarrow$ bounded Jev state.\\[6pt]
+Annotate retained evidence, changed outcomes, source IDs, and token budget.}
+\DraftBlock{3.8cm}{Algorithm and illustrative context before/after folding.\\
+State the association and ordering rules used by the implemented system.}
+
+\PlanPage{9}{Section 3.5: 1 page, p.~9; two half-page path descriptions.}
+\subsection{Dual-Path Candidate Selection}\label{sec:paths}
+\subsubsection{Alert Verification}
+\Budget{0.50 page}
+\DraftText{Describe full-stream fast scoring, the resulting alert set, and
+the evidence used by Jev to reassess each selected target. Specify actual
+selection and decision thresholds. Explain how verification changes the final
+target-flow prediction and how its precision effect will be measured.}
+\DraftBlock{3.8cm}{Verification path: candidate rule, typed decision, retained/revised alert.}
+\subsubsection{Cross-Flow Discovery}
+\Budget{0.50 page}
+\DraftText{Define the association cues and routing rule applied independently
+to the full stream. Explain why selected target flows need related-flow evidence
+and how discovery produces additional target-flow decisions. Describe duplicate
+handling when a target is selected by both paths.}
+\DraftBlock{3.8cm}{Discovery path: full-stream candidates, evidence construction, additional decisions.}
+
+\PlanPage{10}{Sections 3.6--3.7: 1 page, p.~10; part 6 of the method allocation.}
+\subsection{Typed Decisions and Output Integration}\label{sec:typed}
+\Budget{0.50 page}
+\DraftText{Specify the serialized state, typed question, answer type, and
+probability returned by the existing Jev model~\cite{R11,R02}. Explain the
+implemented calibration and integration rule for the fast detector and both
+semantic paths, including overlapping candidates and failed requests. Freeze
+the rule from the actual implementation; do not insert an earlier unconfirmed
+fusion formula.}
+\DraftBlock{3.7cm}{Typed interface and final output rule.\\
+Model identifier/version: xxx. Thresholds and overlap rule: xxx.}
+\subsection{Implementation and Reproducibility}
+\Budget{0.50 page}
+\DraftText{Give parser and dependency versions, streaming/window management,
+hardware, API/client configuration, concurrency, timeout/retry handling, and
+component timing boundaries. Identify the code revision and available artifacts.
+Record applicable AI assistance in preparing text, figures, or study design.
+The extended schema and run manifest are in Appendix~\ref{app:reproducibility}.}
+\DraftBlock{3.3cm}{Implementation details and reproducibility pointers.\\
+Software versions, code revision, model snapshot, and configuration IDs: xxx.}

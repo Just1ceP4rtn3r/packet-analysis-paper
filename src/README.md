@@ -1,6 +1,40 @@
-# Electronics Introduction
+# Electronics Article 骨架
 
-英文引言采用“行为与证据需求 → 流量表示的跨协议语义挑战 → LLM 上下文的关系证据挑战 → 判别开销与 Jev-IDS → 两层语义依赖机制 → Jev 判别与关键流 → 评价 → 两项贡献”的主线。工作标题为 **Malicious Traffic Detection through Unified Protocol Semantics and Packet Dependencies**。
+2026-10-12：按用户确认的常规 Article 要求扩展为 **22 页**全文骨架。Introduction 原文保持不变；后续各章显示写作职责、图表占位及页预算。该稿采用官方投稿模板，实际研究内容与作者信息仍需填写。
+
+## 全文预算与操作
+
+| 页面 | 内容 |
+| --- | --- |
+| 1 | 标题、作者、摘要、关键词，以及骨架模式的预算总览 |
+| 2–3 | Introduction，2 页 |
+| 4 | Related Work，1 页 |
+| 5–10 | Methodology，6 页；首个小节 3.1 Problem Formulation 占第 5 页 |
+| 11–17 | Experiments，7 页 |
+| 18 | Discussion 0.65 页 + Conclusions 0.35 页 |
+| 19 | 文后声明，1 页 |
+| 20 | Appendix A，1 页 |
+| 21–22 | References，2 页 |
+
+一级章节固定为 Introduction → Related Work → Methodology → Experiments → Discussion → Conclusions。`sections/framework.tex` 承载 Methodology，并在开头嵌入 `sections/problem_formulation.tex`；`sections/evaluation.tex` 承载 Experiments。
+
+Electronics 无最大论文页数限制；本预算是本文组织选择。官方条款、七篇同刊逐章分析及小节职责见仓库根目录 `electronics_structure_plan_zh.md`，长期约束见 `Agents.md`。
+
+```sh
+make          # build/main.pdf
+make verify   # 实际页数、章节位置、模板哈希、引用、摘要与关键词
+make package  # build/electronics-skeleton-source.zip
+```
+
+PDF 使用 TeX Live 的 `latexmk`、`pdflatex`、`bibtex` 编译；核验另需 Python 3 标准库、Poppler 的 `pdfinfo` 和 `pdftotext`。源码归档包含已用依赖、官方模板、当前引用、各节源码和 PDF；解压后进入 `electronics-skeleton/` 运行 `make verify`。
+
+`planning.tex` 提供 `\PlanPage`、`\Budget`、`\DraftText`、`\DraftFigure`、`\DraftTable` 等宏。规划分页发生溢出时编译报错，不会静默改变篇幅。预算分数表示写作目标，包含标题、文字及图表；实际章节起始物理页可通过 `build/skeleton_verification.json` 核对。图表编号遵循模板，附录表从 Table A1 开始。
+
+完成正文时以真实内容替换占位，并在 `planning.tex` 将 `\planningtrue` 改为 `\planningfalse`，关闭预算提示及人为分页，恢复自然排版。正文填完后重新核对摘要、作者、声明、引用和篇幅；`verify` 是当前 22 页结构稿校验，预算变更后应同步更新脚本。
+
+## 引言定位
+
+英文引言采用“跨流行为证据需求 → 操作语义对齐与有界上下文 → 语义判别开销与 Jev-IDS → 双层语义表示 → 并行的告警复判与跨流补充检测 → 实验结果 → 两项贡献”的主线。告警复判针对全流快速评分产生的告警集合，提高精确率；跨流补充检测在全流范围独立选择具有跨流攻击线索的候选目标，提高召回率。工作标题为 **Malicious Traffic Detection through Unified Protocol Semantics and Packet Dependencies**。
 
 ## 文件与编译
 
@@ -8,11 +42,15 @@
 | --- | --- |
 | `main.tex` | 主入口，使用 `electronics,article,submit` 期刊选项 |
 | `sections/introduction.tex` | 英文 Introduction 与两项贡献 |
-| `references.bib` | 引言实际引用的文献 |
+| `sections/related_work.tex` 等新增文件 | 相关工作、任务定义、方法、评价、讨论/结论、声明和附录 |
+| `planning.tex` | 仅用于结构稿的页预算、占位和分页宏 |
+| `tools/verify_skeleton.py` | PDF 实际页数与章节起始页核验 |
+| `tools/package_skeleton.py` | 可重编译的结构稿源码归档 |
+| `references.bib` | 引言引用及已有研究文献条目 |
 | `Definitions/` | MDPI 官方类、样式及资源，保留原文件 |
 | `verse.sty` | 官方模板依赖的 CTAN 包，随项目提供 |
 | `research/electronics_intro_study.json` | 七篇同刊引言和 contribution 的组织方式分析 |
-| `research/source_manifest.json` | 段落、主张与资料来源的对应关系 |
+| `research/source_manifest.json` | 早期引言的段落、主张与资料来源对应记录 |
 | `research/feishu_*.json` | 本次读取的飞书章节快照 |
 | `research/template_manifest.json` | 模板下载地址、版本和文件哈希 |
 | `research/mdpi_template_original.tex` | 官方模板原始示例 |
@@ -23,7 +61,7 @@
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build main.tex
 ```
 
-## 叙事依据
+## 早期研究记录
 
 本次逐篇阅读了七篇 Electronics 论文的 Introduction 和贡献列表。结构感知表示论文采用“可用信息 → 表示机制 → 结果与贡献”的推进方式；检测与解释论文在动机中建立证据定位的用途；[MeeDet](https://doi.org/10.3390/electronics15051017) 将检测质量、效率和解释各自对应到机制。本文将这些组织方式汇合到统一语义与依赖上下文这一条主线。各篇论文的标题、DOI、本地全文路径和具体映射见 `research/electronics_intro_study.json`。
 
@@ -35,8 +73,10 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=bu
 
 本机使用 TeX Live 2022。项目附带 [CTAN verse 包](https://ctan.org/pkg/verse)及其 LPPL 源文件，`main.tex` 为旧版内核提供文档元数据条件的兼容定义。依赖来源与生成步骤见 `research/verse_manifest.json`。
 
-## 定稿信息
+## 当前引言
 
-当前源码保留作者补充的 CIC-IDS2017、CIC-IDS2018 评价和定性结果段落及其蓝色标记。实测数值、正式方法名称、二分类粒度、归因评分算法和在线更新对象仍按实际实现补全。第二项贡献聚焦语义上下文的检测、归因与效率评价；结果句的插入位置与所需字段保留在 `sections/introduction.tex` 注释中。标题暂用描述性名称，作者、单位和摘要字段留空。
+2026-10-12 修订依据本次对话确认的中文稿和双路径方法定义。第一层统一消息操作语义，第二层围绕目标流组织跨流行为证据；判别阶段包括并行的告警复判与跨流补充检测。两项贡献分别为双层语义表示和兼顾精确率、召回率的双路径判别框架。
 
-最终结果句建议保留两到三项记忆点：检测与关键流定位的最强证据、相同输入条件下的端到端速度、时间推进中的适应结果。每句同时给出数据集、任务单位、指标和比较条件。
+`references.bib` 新增 BACnet 语义检测（R12）、MISSION（R13）和 From Flows to Words（R14），并保留 Jev-IDS（R02）与 Jev 接口文档（R11）。结果段的数据集、比较模型和实验数值使用 `xxx` 占位。正文采用英文陈述句，结果段使用常规正文样式。
+
+`research/` 中的逐句译文、对齐文件及来源记录属于早期版本；当前英文引言以 `sections/introduction.tex` 为准。标题保留描述性名称，作者、单位和摘要现在使用显式占位；正式内容完成后替换。

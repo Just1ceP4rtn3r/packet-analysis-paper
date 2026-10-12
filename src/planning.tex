@@ -1,0 +1,70 @@
+% Draft-only layout controls. Set planningfalse below for natural pagination.
+\newif\ifplanning
+\planningtrue
+\definecolor{planink}{HTML}{35536A}
+\definecolor{planfill}{HTML}{F2F5F7}
+
+\newcommand{\PlanNote}[1]{\ifplanning
+  \par\noindent\colorbox{planfill}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+    \small\color{planink}\textbf{Writing plan.} #1}}\par\smallskip
+\fi}
+\newcommand{\Budget}[1]{\ifplanning\par\noindent{\small\color{planink}%
+  \textit{Allocated space: #1 (including headings, text, figures, and tables).}}\par\smallskip\fi}
+\newcommand{\DraftText}[1]{\ifplanning
+  \par\noindent\textbf{[Text placeholder]} #1\par\smallskip
+\fi}
+\newcommand{\DraftBlock}[2]{\ifplanning
+  \par\noindent\fcolorbox{planink!45}{planfill}{%
+    \parbox[c][#1][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+      \centering\small\color{planink}\textbf{RESERVED MANUSCRIPT SPACE}\par\medskip #2}}
+  \par\smallskip
+\fi}
+\newcommand{\DraftFigure}[3]{\ifplanning
+  \begin{figure}[H]\centering
+  \DraftBlock{#1}{#3}
+  \caption{#2 (figure placeholder).}
+  \end{figure}
+\fi}
+\newcommand{\DraftTable}[3]{\ifplanning
+  \begin{table}[H]\caption{#2 (table placeholder).}
+  \DraftBlock{#1}{#3}
+  \end{table}
+\fi}
+
+% Advance to an allocated physical page. An overflow is an error, not a silent
+% change to the page count. Reserved pages contain a visible explanation.
+\newcommand{\PlanToPage}[1]{\ifplanning
+  \clearpage
+  \loop\ifnum\value{page}<#1\relax
+    \PlanNote{Reserved continuation of the preceding allocation.}
+    \DraftBlock{0.65\textheight}{Replace this space with the corresponding manuscript content.}
+    \clearpage
+  \repeat
+  \ifnum\value{page}>#1\relax
+    \PackageError{paper-plan}{Page budget overflow: expected page #1, reached \thepage}%
+      {Shorten the draft or update the agreed page budget.}
+  \fi
+\fi}
+\newcommand{\PlanPage}[2]{\PlanToPage{#1}\PlanNote{#2}}
+
+\newcommand{\PlanOverview}{\ifplanning
+  \PlanNote{22-page structural draft; content and results marked as placeholders.
+  These allocations are author-selected writing targets. Electronics has no maximum manuscript length.}
+  \begingroup\small
+  \noindent\begin{tabularx}{\linewidth}{@{}Xrr@{}}
+  \toprule
+  Component & Pages & Budget \\
+  \midrule
+  Title, abstract, and keywords & 1 & 1 \\
+  1. Introduction & 2--3 & 2 \\
+  2. Related Work & 4 & 1 \\
+  3. Methodology & 5--10 & 6 \\
+  4. Experiments & 11--17 & 7 \\
+  5. Discussion / 6. Conclusions & 18 & 0.65 / 0.35 \\
+  Back matter & 19 & 1 \\
+  Appendix A & 20 & 1 \\
+  References & 21--22 & 2 \\
+  \bottomrule
+  \end{tabularx}\par
+  \endgroup
+\fi}

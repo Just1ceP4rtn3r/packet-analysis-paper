@@ -1,37 +1,53 @@
 \section{Introduction}
 \label{sec:introduction}
 
-In network intrusion detection, malicious behavior can emerge from the relationships among communications. A flow that carries little evidence in isolation can become informative when considered alongside related exchanges and the roles of the participating hosts. Trace-level analysis has demonstrated how temporal and co-occurrence context supports attack detection and the identification of key flows within an attack sequence~\cite{R01}. These flows give security analysts a concrete starting point for investigating an alert, while explanations at the packet and sequence levels connect a model's decision to the underlying traffic~\cite{E05}. Effective analysis of such behavior therefore calls for a representation that captures the meaning of communications, preserves their dependencies, and connects detection outcomes to identifiable flow evidence.
+Network intrusion detection systems (NIDS) identify malicious activity in network traffic.
+For attacks spanning multiple flows, evidence is distributed across requests, responses, and communications among hosts, so the security significance of an individual interaction depends on the surrounding behavior.
+A failed request can reflect a configuration error, while repeated attempts by the same client across multiple resources, successive server rejections, and subsequent changes in responses can provide additional evidence of probing or intrusion.
+Detecting such behavior requires NIDS to combine the operational meaning of related communications while processing a continuous stream of traffic.
 
-Machine learning and deep learning extract discriminative information from traffic statistics, packet bytes, and structural relationships. Statistical features summarize flow behavior, and pretrained byte-sequence models such as NetMamba learn representations from packet headers and payloads~\cite{R06}. Recent work in \textit{Electronics} extends this representation space: structure-aware modeling preserves protocol-field boundaries and dependencies across fields, layers, and packets~\cite{E01}, while GCN-MHA uses graph convolution and multi-head attention to model relationships in encrypted traffic~\cite{E02}. These methods capture traffic content and structural correlations, while the operational meaning of an interaction remains implicit in protocol-specific features and learned embeddings. Heterogeneous protocols can express related operations through different fields and interaction patterns, making their behavioral meaning difficult to align across communications. Behavior-oriented detection therefore requires an explicit account of the operations carried by the traffic, the packet dependencies that connect them, and the roles of the participating endpoints.
+Machine learning methods extract traffic representations from packet bytes, protocol structures, and relationships among flows.
+NetMamba learns communication patterns from packet bytes through pretraining~\cite{R06}, while the structure-aware method of Yu et al. preserves field boundaries and protocol hierarchies~\cite{E01}.
+Cross-flow methods extend the evidence available for detection by incorporating temporal relationships, shared endpoints, and statistical similarity.
+Tracegram aggregates flows with temporal context~\cite{R01}, and the framework of Huang et al. uses relation-aware attention to incorporate cross-flow structure into target-flow classification~\cite{R07}.
 
-Large language models (LLMs) offer a complementary route by placing traffic observations, field descriptions, task definitions, and labeled examples in a shared decision context~\cite{R05,R09}. Huang et al. extend this route with cross-flow contexts and relation-aware attention based on endpoints, ports, protocols, and statistical similarity~\cite{R07}. Endpoint and similarity links identify shared participants or correlations; interpreting their security significance still requires the operations carried by the packets and the dependency structure of those operations. Context construction thus faces the challenge of supplying explicit behavioral evidence within an input budget.
+The operational meaning of communications remains largely implicit in these representations.
+Explicit alignment of operations, accessed resources, and response outcomes provides a common basis for interpreting messages from different protocols and combining them into behavioral evidence.
+Semantic methods make operational semantics explicit: the BACnet threat detector uses large language models (LLMs) to interpret protocol operations with domain knowledge~\cite{R12}, while MISSION correlates MQTT communications and constructs process models~\cite{R13}.
+Their mechanisms for interpreting operations and correlating interactions are defined for specific protocols.
+For heterogeneous traffic, the first challenge is to align protocol-specific operations and organize related interactions into bounded evidence that preserves operation order and response outcomes for target-flow classification.
 
-Alongside context construction, inference must convert this evidence into a usable decision at an acceptable processing cost. Longer descriptions increase the amount of information the model must process, and generative detection pipelines add response generation and label extraction to the decision path. For example, the in-context detector of Zhang et al. extracts intrusion decisions by parsing textual yes/no responses~\cite{R09}. MeeDet addresses runtime demands by coupling an efficient traffic detector with LLM-assisted analysis of flagged traffic~\cite{E03}. More recently, Jev-IDS has applied Jev's typed decision interface to one serialized flow per request, evaluating detection quality, latency, and cost under label scarcity~\cite{R02}. For behavior spanning related communications, the corresponding representation challenge is to construct decision states that describe protocol operations, packet dependencies, and endpoint roles together with source-flow evidence.
+Cross-flow semantic analysis also introduces processing costs that depend on context size, decision procedure, and invocation count.
+Generative LLM detectors encode the input and generate an output sequence to obtain a decision; From Flows to Words follows this procedure with grammar-constrained structured output~\cite{R14}.
+Submitting cross-flow context independently for each target flow can additionally repeat the processing of shared evidence.
+Jev-IDS applies typed decisions to one serialized flow per request and evaluates detection quality, latency, and cost~\cite{R02}.
+Applying semantic decisions to the full traffic stream requires candidate selection for two tasks: verifying alerts produced by a fast detector and identifying attacks supported jointly by multiple flows.
+These tasks target precision and recall, respectively, and require different selection criteria.
+The second challenge is to allocate semantic inference to both tasks while controlling context size and invocation costs.
 
-We address these challenges by organizing decision context around \emph{unified communication semantics and packet dependencies}. Our framework constructs this context in two layers. The first parses heterogeneous protocols and normalizes the extracted packet information into a common representation. The second maps communication operations into a unified semantic model, establishes packet dependencies, and represents endpoint roles in a relationship graph. This organization separates the protocol-specific encoding of an observation from the operation it expresses, allowing related communications to be described on a common semantic basis. The resulting context presents the operations together with the dependencies and roles that give them behavioral significance, while maintaining links to the original packets and flows.
+This paper presents a network intrusion detection framework that combines a two-layer semantic representation with two parallel decision paths based on Jev.
+The first layer normalizes heterogeneous protocol messages into operations, resources, response outcomes, and endpoint roles to establish message-level operational semantics.
+The second layer constructs cross-flow behavioral semantics around a target flow, using endpoint and temporal associations to organize communication history, client activity, server responses, and related events in temporal order.
+Deterministic computation extracts counts, rates, and response differences, while template folding compresses repeated messages and retains meaningful changes.
+The resulting context presents behavioral facts relevant to the target flow within a fixed input budget and maintains links to the source packets and flows.
 
-To obtain a structured judgment from this semantic context, we use Jev, a decision model that evaluates typed questions against an input state and directly returns structured results~\cite{R11}. The semantic representation supplies the input state, and a typed benign-or-malicious question specifies the required decision. This interface removes response generation and textual label extraction from the decision stage, allowing its processing cost to be evaluated together with context construction. The retained links to source traffic provide the basis for key-flow attribution. Detection and evidence localization thus share the same account of the observed behavior: the detector uses related operations to make a decision, and attribution identifies the flows that substantiate it.
+The two decision paths address alert verification and cross-flow attack discovery in parallel.
+In the alert-verification path, a fast detector scores every flow, and Jev reassesses the resulting alert set to reduce false positives and improve precision.
+Independently, the cross-flow discovery path applies selective routing across the full traffic stream, using association cues to select target flows whose related communications may jointly indicate an attack.
+The two semantic layers organize this cross-flow evidence into a compact context for Jev to detect attacks that are difficult to identify from individual flows alone, thereby improving recall.
+Jev evaluates typed questions against the supplied state and directly returns decision probabilities~\cite{R11}.
+The framework controls semantic processing costs through bounded evidence construction, direct probability outputs, and candidate selection specific to each path.
 
-\szx{We apply this framework to the detection of malicious traffic in the CIC-IDS2017 and CIC-IDS2018 datasets. We evaluate the quality of binary detection, key-flow attribution, and runtime performance under different input budgets, concurrency levels, and temporal settings. The results show that our semantic-context representation improves both detection quality and evidence localization compared with baseline methods, while maintaining competitive processing efficiency.}
+Experiments on xxx show that the complete framework improves precision and recall by xxx and xxx percentage points, respectively, over the fast detector alone.
+Ablation experiments show that alert verification reduces false positives by xxx\%, while cross-flow discovery increases the detection rate for attacks requiring related-flow evidence by xxx percentage points.
+Compared with the xxx generative LLM under matched input evidence, detection operating points, and concurrency, the framework reduces end-to-end processing latency by xxx\%.
 
-% RESULT INSERTION POINT: replace or augment the preceding evaluation paragraph
-% with two or three strongest measured outcomes when experiment records arrive.
-% Each result sentence should identify the dataset, decision unit, metric, and
-% comparison condition. Suggested pattern (editorial instructions, not prose):
-% On [dataset], [method] achieves [attack-F1/Macro-F1] and [key-flow coverage]
-% at [inspection budget]. Under matched [input/concurrency/example budget],
-% its end-to-end [latency/throughput] is [value] compared with [baseline].
-% In [temporal setting], [implemented update policy] achieves [measured outcome].
-% Finalize the decision unit and attribution procedure from the implementation.
-
-The main contributions of this work are as follows:
+The main contributions are as follows:
 \begin{enumerate}
-    \item \textbf{A unified semantic and dependency representation for malicious traffic.} We introduce a two-layer context construction method that combines normalized protocol observations with communication semantics, packet dependencies, and endpoint-role relationships. It supplies explicit behavioral context for malicious-traffic detection and maintains links to the source flows for evidence localization.
-    \item \textbf{An evaluation of semantic context for detection, attribution, and efficiency.} We organize binary detection, key-flow attribution, and runtime comparisons within a common framework, using trained classifiers and generative LLMs as reference methods. Component ablations, relation perturbations, and temporal evaluation connect the semantic design to detection quality, evidence quality, processing cost, and adaptation under changing traffic.
+    \item \textbf{A two-layer semantic representation for target-flow classification.}
+    Message-level operational semantics align operations, resources, response outcomes, and endpoint roles across protocols.
+    Cross-flow behavioral semantics organize related interactions and their temporal order around a target flow, with deterministic statistics and template folding producing bounded evidence traceable to the original traffic.
+    \item \textbf{A dual-path semantic decision framework for precision and recall.}
+    Alert verification reassesses the fast detector's alerts, while cross-flow discovery independently selects candidates whose related communications may jointly indicate an attack.
+    The two paths combine Jev's typed probability outputs with task-specific candidate selection and compact semantic contexts to support false-positive correction and additional attack detection within a controlled processing budget.
 \end{enumerate}
-
-% After measured results are available, contribution 2 can lead with the
-% strongest quality/efficiency finding and its experimental conditions.
-
-The remainder of this paper reviews related work, defines the detection and attribution tasks, details the semantic-context framework, and presents the evaluation and conclusions.
